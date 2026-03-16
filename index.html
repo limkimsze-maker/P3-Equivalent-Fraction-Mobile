@@ -1014,6 +1014,210 @@
       .feedback{min-height:34px;padding:6px 8px}
       .footer{font-size:8px}
     }
+    /* ===== MOBILE 75% SCALE FIX ===== */
+@media (max-width: 430px) {
+  .app{
+    padding:
+      max(4px, env(safe-area-inset-top))
+      6px
+      max(4px, env(safe-area-inset-bottom));
+    gap:4px;
+  }
+
+  .topbar,
+  .tickets-wrap,
+  .progress-wrap,
+  .frame,
+  .feedback{
+    border-width:2px;
+    border-radius:14px;
+  }
+
+  .topbar{ padding:4px 5px; }
+  .title{ font-size:.9rem; }
+  .sub{ font-size:7px; }
+  .mini-btn{
+    font-size:8px;
+    padding:4px 7px;
+    border-width:2px;
+  }
+
+  .stats-row{ gap:2px; }
+  .stat{
+    font-size:7px;
+    padding:2px 1px;
+    border-width:2px;
+    border-radius:9px;
+  }
+  .stat .value{ font-size:9px; }
+
+  .tickets-wrap,
+  .progress-wrap{
+    padding:4px 6px;
+  }
+
+  .section-label{
+    font-size:9px;
+    margin-bottom:2px;
+  }
+
+  .ticket{
+    width:18px;
+    height:18px;
+    font-size:9px;
+    border-width:2px;
+  }
+
+  .story-nav{ gap:4px; }
+  .story-pill{
+    font-size:9px;
+    padding:5px 3px;
+    border-width:2px;
+  }
+
+  .frame{ padding:5px; }
+  .frame-title{ font-size:11px; }
+  .frame-info-mini{
+    font-size:8px;
+    padding:4px 8px;
+    border-width:2px;
+  }
+
+  .frame-main{ gap:5px; }
+
+  .card{
+    padding:6px 5px;
+    border-width:2px;
+    border-radius:12px;
+  }
+
+  .tag{
+    font-size:10px;
+    min-height:22px;
+    padding:3px 8px;
+    border-width:2px;
+  }
+
+  .dialogue,
+  .bubble,
+  .note,
+  .help-line,
+  .served,
+  .feedback,
+  .chef-sub{
+    font-size:9px;
+  }
+
+  .chef-main{ font-size:11px; }
+  .bubble{ min-height:58px; padding:6px; }
+  .note{ padding:6px; }
+
+  /* Frame 1 */
+  #frame1 .frame-main{ gap:5px; }
+  #frame1 .customer-hero{
+    flex:0 0 auto;
+    min-height:auto;
+  }
+  #frame1 .character{
+    max-width:min(100%, 180px);
+    margin-bottom:4px;
+  }
+  #frame1 .dialogue{
+    font-size:13px;
+    min-height:16px;
+  }
+  #frame1 .order-line{ font-size:14px; }
+  #frame1 .help-line{ font-size:11px; }
+  #frame1 .tag{
+    font-size:11px;
+    min-height:24px;
+    padding:4px 8px;
+  }
+  #frame1 .frac .num,
+  #frame1 .frac .den{
+    font-size:1.9rem;
+  }
+  #frame1 .frac .bar{
+    min-width:30px;
+    height:3px;
+  }
+
+  /* Frame 2 */
+  #frame2 .frame-main{
+    grid-template-rows:auto minmax(150px,1fr) auto auto;
+    gap:5px;
+    align-content:start;
+  }
+
+  #frame2 .card{
+    padding:6px 5px;
+  }
+
+  .pizza-stage,
+  #frame2 .pizza-stage{
+    width:min(100%, 68vw, 260px);
+    min-height:150px;
+  }
+
+  .board{
+    inset:6%;
+    border-width:6px;
+  }
+
+  .grouping{
+    padding:4px;
+    border-width:2px;
+  }
+
+  .group-box{
+    font-size:11px;
+    padding:3px 5px;
+    border-width:2px;
+  }
+
+  .plate-zone{
+    gap:5px 8px;
+  }
+
+  .plate-wrap{
+    width:min(92px, 24vw);
+  }
+
+  .controls{
+    gap:4px;
+  }
+
+  .game-btn{
+    font-size:9px;
+    padding:6px 5px;
+    min-width:0;
+    border-width:2px;
+  }
+
+  .controls .game-btn{
+    padding:7px 4px;
+  }
+
+  .story-cta{
+    gap:5px;
+  }
+
+  .feedback{
+    min-height:30px;
+    padding:5px 6px;
+  }
+
+  .footer{
+    font-size:7px;
+    padding-bottom:0;
+  }
+
+  /* Frame 3 */
+  #frame3 .character{
+    max-width:min(100%, 145px);
+    max-height:28%;
+  }
+}
   </style>
 </head>
 <body>
