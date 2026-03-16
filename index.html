@@ -9,6 +9,10 @@
   <title>Pizza Café — Mobile Story Mode</title>
   <link rel="icon" href="kimsze_sharp.ico" type="image/x-icon" />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --bg1:#fff7eb;
@@ -29,7 +33,7 @@
     html,body{margin:0;height:100%}
 
     body{
-      font-family:"Comic Sans MS","Comic Sans",cursive,sans-serif;
+      font-family:"Comic Sans MS","Comic Neue","Comic Sans","Chalkboard SE","Marker Felt",cursive,sans-serif;
       background:linear-gradient(180deg,var(--bg1),var(--bg2));
       color:#5f361d;
       overflow:hidden;
@@ -413,18 +417,24 @@
     /* Frame 2 */
     #frame2 .frame-main{
       flex:1 1 auto;
-      justify-content:space-between;
+      min-height:0;
+      width:100%;
+      display:grid;
+      grid-template-rows:auto minmax(220px,1fr) auto auto;
+      align-content:stretch;
+      justify-items:center;
+      gap:8px;
     }
     #frame2 .card{
       flex:0 0 auto;
       width:100%;
+      padding:8px 8px;
     }
     #frame2 .pizza-stage{
       flex:1 1 auto;
-      min-height:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
+      min-height:220px;
+      width:min(100%, 92vw, 390px);
+      align-self:center;
     }
     #frame2 .plate-zone,
     #frame2 .controls,
@@ -601,9 +611,10 @@
 
     .pizza-stage{
       position:relative;
-      width:var(--pizza-size);
-      height:var(--pizza-size);
-      min-height:170px;
+      width:min(100%, 92vw, 390px);
+      aspect-ratio:1 / 1;
+      height:auto;
+      min-height:220px;
       margin:0 auto 4px;
       display:flex;
       align-items:center;
@@ -690,12 +701,15 @@
 
     .plate-zone{
       display:flex;
-      flex-direction:column;
+      flex-direction:row;
+      flex-wrap:wrap;
       align-items:center;
-      gap:2px;
+      justify-content:center;
+      gap:8px 14px;
+      width:100%;
     }
     .plate-wrap{
-      width:var(--plate-w);
+      width:min(132px, 32vw);
       max-width:100%;
       aspect-ratio:1/.72;
     }
@@ -709,12 +723,16 @@
       font-weight:900;
       text-align:center;
     }
+    #servedEquation{
+      min-width:54px;
+      text-align:center;
+    }
 
     .controls{
-      display:flex;
-      justify-content:center;
-      gap:6px;
-      flex-wrap:wrap;
+      width:100%;
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:8px;
       margin-top:4px;
     }
     .game-btn{
@@ -727,6 +745,11 @@
       font-size:11px;
       font-weight:900;
       color:#5f361d;
+    }
+    .controls .game-btn{
+      min-width:0;
+      width:100%;
+      padding:9px 6px;
     }
     .game-btn:disabled{
       opacity:.55;
@@ -748,6 +771,7 @@
     .story-cta .game-btn{
       flex:1 1 0;
       min-width:0;
+      width:100%;
     }
 
     .feedback{
@@ -907,6 +931,22 @@
       100%{transform:translateY(110vh) rotate(720deg);opacity:1}
     }
 
+    @media (max-width:390px){
+      .controls{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+
+      .pizza-stage,
+      #frame2 .pizza-stage{
+        min-height:190px;
+        width:min(100%, 88vw, 320px);
+      }
+
+      .plate-wrap{
+        width:min(112px, 30vw);
+      }
+    }
+
     @media (max-height:760px){
       :root{
         --character-h: clamp(70px, 10dvh, 96px);
@@ -945,6 +985,11 @@
         height:3px;
       }
 
+      #frame2 .frame-main{
+        grid-template-rows:auto minmax(190px,1fr) auto auto;
+        gap:6px;
+      }
+
       #frame3 .character{
         max-width:min(100%, 170px);
         max-height:32%;
@@ -959,11 +1004,12 @@
       .frac .num,.frac .den{font-size:1.45rem}
       .frac-sm .num,.frac-sm .den{font-size:12px}
       .frac-lg .num,.frac-lg .den{font-size:15px}
-      .pizza-stage{min-height:150px}
+      .pizza-stage{min-height:190px}
       .grouping{padding:5px}
       .group-box{font-size:12px;padding:4px 6px}
       .controls{gap:4px}
       .game-btn{font-size:10px;padding:6px 7px;min-width:64px}
+      .controls .game-btn{padding:7px 5px}
       .story-cta{gap:6px}
       .feedback{min-height:34px;padding:6px 8px}
       .footer{font-size:8px}
