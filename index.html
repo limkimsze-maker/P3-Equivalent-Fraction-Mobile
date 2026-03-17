@@ -15,6 +15,7 @@
 
   <style>
     :root{
+      --app-h: 100vh;
       --bg1:#fff7eb;
       --bg2:#ffe7c9;
       --panel:#fffaf3;
@@ -37,6 +38,7 @@
 
     html,body{
       margin:0;
+      min-height:100%;
       height:100%;
     }
 
@@ -45,6 +47,9 @@
     }
 
     body{
+      min-height:100vh;
+      min-height:100svh;
+      min-height:var(--app-h);
       background:linear-gradient(180deg,var(--bg1),var(--bg2));
       color:#5f361d;
       overflow:hidden;
@@ -58,14 +63,16 @@
     }
 
     .cover{
-      min-height:100dvh;
+      min-height:100vh;
+      min-height:100svh;
+      min-height:var(--app-h);
       display:flex;
       align-items:center;
       justify-content:center;
       padding:
-        max(16px, env(safe-area-inset-top))
-        16px
-        max(16px, env(safe-area-inset-bottom));
+        max(12px, env(safe-area-inset-top))
+        12px
+        max(12px, env(safe-area-inset-bottom));
       background:linear-gradient(180deg,#2a1208 0%, #140804 60%, #090303 100%);
     }
     .cover.hidden{display:none}
@@ -138,16 +145,16 @@
     }
 
     .app{
-      height:100dvh;
-      max-height:100dvh;
+      height:var(--app-h);
+      max-height:var(--app-h);
       width:min(100%, 560px);
       margin:0 auto;
       padding:
-        max(6px, env(safe-area-inset-top))
+        max(4px, env(safe-area-inset-top))
         8px
-        max(6px, env(safe-area-inset-bottom));
+        max(4px, env(safe-area-inset-bottom));
       display:none;
-      gap:6px;
+      gap:4px;
       flex-direction:column;
       overflow:hidden;
     }
@@ -1389,6 +1396,153 @@
         max-height:28%;
       }
     }
+
+    /* ===== SHORT HEIGHT PHONES ===== */
+    @media (max-height: 780px) and (pointer: coarse) {
+      .app{
+        gap:3px;
+        padding:
+          max(2px, env(safe-area-inset-top))
+          5px
+          max(2px, env(safe-area-inset-bottom));
+      }
+
+      .topbar,
+      .tickets-wrap,
+      .progress-wrap,
+      .frame,
+      .feedback{
+        border-width:2px;
+        border-radius:12px;
+      }
+
+      .topbar{ padding:3px 4px; }
+
+      .title{ font-size:.85rem; }
+      .sub{ font-size:7px; }
+
+      .stats-row{ gap:2px; }
+      .stat{
+        font-size:7px;
+        padding:2px 1px;
+      }
+      .stat .value{ font-size:8px; }
+
+      .tickets-wrap,
+      .progress-wrap{
+        padding:3px 5px;
+      }
+
+      .section-label{
+        font-size:8px;
+        margin-bottom:1px;
+      }
+
+      .ticket{
+        width:16px;
+        height:16px;
+        font-size:8px;
+      }
+
+      .story-pill{
+        font-size:8px;
+        padding:4px 2px;
+      }
+
+      .frame{
+        padding:4px;
+      }
+
+      .frame-title{
+        font-size:10px;
+      }
+
+      .card{
+        padding:5px 4px;
+      }
+
+      .dialogue,
+      .bubble,
+      .note,
+      .help-line,
+      .served,
+      .feedback{
+        font-size:8px;
+        line-height:1.1;
+      }
+
+      #frame1 .character{
+        max-width:min(100%, 150px);
+      }
+
+      .pizza-stage,
+      #frame2 .pizza-stage{
+        width:min(100%, 54vw, 200px);
+        height:min(100%, 54vw, 200px);
+        min-height:105px;
+        margin:0 auto 1px;
+      }
+
+      .plate-wrap{
+        width:68px;
+      }
+
+      .controls{
+        gap:3px;
+        margin-top:2px;
+      }
+
+      .game-btn{
+        font-size:8px;
+        padding:5px 4px;
+        border-width:2px;
+      }
+
+      .feedback{
+        min-height:26px;
+        padding:4px 5px;
+      }
+
+      .footer{
+        font-size:6px;
+        padding-bottom:0;
+      }
+
+      .cover-card{
+        padding:10px;
+      }
+
+      .cover-card img{
+        max-height:140px;
+        margin-bottom:8px;
+      }
+
+      .cover-title{
+        font-size:1.35rem;
+      }
+
+      .cover-sub{
+        font-size:.85rem;
+        margin:2px 0 8px;
+      }
+
+      .cover-note{
+        font-size:11px;
+        padding:8px 10px;
+      }
+
+      .cover-name{
+        margin-top:10px;
+        padding:10px 12px;
+        font-size:16px;
+      }
+
+      .start-btn{
+        min-width:180px;
+        padding:10px 14px;
+        font-size:17px;
+      }
+    }
   </style>
   <script src="https://cdn.counter.dev/script.js" data-id="825e93b6-ce99-40ef-8bcc-125f13297433" data-utcoffset="8"></script>
 </head>
@@ -2553,6 +2707,11 @@
       syncActionButtons();
     }
 
+    function syncViewportHeight(){
+      const h = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+      document.documentElement.style.setProperty("--app-h", `${Math.round(h)}px`);
+    }
+
     coverStartBtn.addEventListener("click", ()=>{
       unlockAudio();
       playOpeningLoop();
@@ -2560,6 +2719,7 @@
       setPlayerName(name);
       coverScreen.classList.add("hidden");
       app.classList.add("show");
+      syncViewportHeight();
       startLevel(1);
     });
 
@@ -2681,6 +2841,14 @@
     window.addEventListener("touchstart", unlockAudio, { once:true, passive:true });
     window.addEventListener("keydown", unlockAudio, { once:true });
 
+    syncViewportHeight();
+    window.addEventListener("resize", syncViewportHeight);
+    window.addEventListener("orientationchange", syncViewportHeight);
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener("resize", syncViewportHeight);
+      window.visualViewport.addEventListener("scroll", syncViewportHeight);
+    }
+
     bestScoreText.textContent = getBestScore();
     bestStreakText.textContent = getBestStreak();
     playerNameText.textContent = getPlayerName() || "Chef";
@@ -2692,4 +2860,4 @@
     goToStoryStep(1);
   </script>
 </body>
-</html>
+  </html>
